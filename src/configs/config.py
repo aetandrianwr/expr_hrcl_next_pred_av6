@@ -38,11 +38,11 @@ class Config:
     }
     
     # Model hyperparameters
-    D_MODEL = 80  # embedding dimension (reduced from 96)
-    N_HEADS = 5
+    D_MODEL = 96
+    N_HEADS = 6
     N_LAYERS = 3
-    D_FF = 160  # feedforward dimension
-    DROPOUT = 0.25
+    D_FF = 160  # Reduced from 192
+    DROPOUT = 0.2
     MAX_SEQ_LEN = 52
     
     # Hierarchical location encoding
@@ -51,18 +51,18 @@ class Config:
     
     # Training hyperparameters
     BATCH_SIZE = 256
-    LEARNING_RATE = 0.002  # Increased for OneCycleLR
-    WEIGHT_DECAY = 0.0001
-    NUM_EPOCHS = 80
-    PATIENCE = 20
+    LEARNING_RATE = 0.003  # Slightly higher for OneCycleLR
+    WEIGHT_DECAY = 0.00005  # Reduced weight decay
+    NUM_EPOCHS = 60
+    PATIENCE = 25  # More patience
     GRAD_CLIP = 1.0
     
     # Learning rate schedule
-    WARMUP_STEPS = 500
+    WARMUP_STEPS = 300
     USE_COSINE_SCHEDULE = True
     
     # Label smoothing
-    LABEL_SMOOTHING = 0.1
+    LABEL_SMOOTHING = 0.05  # Reduced from 0.1
     
     # Checkpoint and logging
     CHECKPOINT_DIR = "checkpoints"
