@@ -70,15 +70,11 @@ class MultiTaskTrainer:
             features = {k: v.to(self.device) for k, v in features.items()}
             targets = targets.to(self.device)
             
-            # Forward pass with auxiliary outputs
-            logits, h3_res7_logits, s2_l13_logits = self.model(features, return_aux=True)
+            # Forward pass
+            logits = self.model(features)
             
             # Main loss
             main_loss = self.main_criterion(logits, targets)
-            
-            # Auxiliary losses (need to extract targets from features)
-            # Since we don't have these in the current data format, we'll skip aux loss for now
-            # Just use main loss
             loss = main_loss
             
             # Backward pass
@@ -112,7 +108,7 @@ class MultiTaskTrainer:
                 features = {k: v.to(self.device) for k, v in features.items()}
                 targets = targets.to(self.device)
                 
-                logits = self.model(features, return_aux=False)
+                logits = self.model(features)
                 
                 results, _, _ = calculate_correct_total_prediction(logits, targets)
                 all_results.append(results)
