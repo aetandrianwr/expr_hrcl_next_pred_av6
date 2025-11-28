@@ -19,30 +19,30 @@ class Config:
     # Device
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     
-    # Vocabulary sizes (from data analysis)
+    # Vocabulary sizes (from data analysis - max value + 1)
     VOCAB_SIZES = {
-        'location': 1187,  # max + 1 for padding
-        'user': 46,  # 45 users + padding
+        'location': 1187,
+        'user': 46,
         'weekday': 7,
-        'time_slot': 288,  # 24*60/5 = 288 (5-min slots)
-        'duration': 2880,  # max duration + 1
+        'time_slot': 1440,  # minutes in a day
+        'duration': 2880,
         'diff': 8,
         'h3_res5': 174,
         'h3_res6': 278,
         'h3_res7': 463,
-        'h3_res8': 785,
+        'h3_res8': 795,  # Fixed: was 785
         's2_level11': 314,
-        's2_level13': 666,
-        's2_level14': 923,
-        's2_level15': 1246,
+        's2_level13': 673,  # Fixed: was 666
+        's2_level14': 926,  # Fixed: was 923
+        's2_level15': 1249,  # Fixed: was 1246
     }
     
     # Model hyperparameters
-    D_MODEL = 96  # embedding dimension
-    N_HEADS = 6
+    D_MODEL = 80  # embedding dimension (reduced from 96)
+    N_HEADS = 5
     N_LAYERS = 3
-    D_FF = 192  # feedforward dimension
-    DROPOUT = 0.2
+    D_FF = 160  # feedforward dimension
+    DROPOUT = 0.25
     MAX_SEQ_LEN = 52
     
     # Hierarchical location encoding
@@ -51,10 +51,10 @@ class Config:
     
     # Training hyperparameters
     BATCH_SIZE = 256
-    LEARNING_RATE = 0.001
+    LEARNING_RATE = 0.002  # Increased for OneCycleLR
     WEIGHT_DECAY = 0.0001
-    NUM_EPOCHS = 100
-    PATIENCE = 15
+    NUM_EPOCHS = 80
+    PATIENCE = 20
     GRAD_CLIP = 1.0
     
     # Learning rate schedule
