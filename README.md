@@ -1,49 +1,95 @@
-# GeoLife Next-Location Prediction
+# GeoLife Next-Location Prediction System
 
-A hierarchical Transformer-based system for next-location prediction on the GeoLife dataset.
+**A hierarchical Transformer-based deep learning system for predicting the next location in human mobility trajectories.**
 
-## Project Structure
+## 🎯 Performance
 
-```
-.
-├── src/
-│   ├── configs/        # Configuration files
-│   ├── data/           # Dataset and dataloaders
-│   ├── models/         # Model architectures
-│   ├── training/       # Training logic
-│   ├── evaluation/     # Evaluation logic
-│   └── utils/          # Metrics and utilities
-├── data/               # GeoLife dataset
-├── checkpoints/        # Saved model checkpoints
-├── logs/               # Training logs
-├── train.py            # Main training script
-└── test.py             # Test evaluation script
-```
+- **Test Accuracy@1:** 42.65%
+- **Test Accuracy@5:** 60.86%  
+- **Test MRR:** 51.01%
+- **Model Parameters:** 411,123 (< 500K budget)
 
-## Model Architecture
+## 📚 Complete Documentation
 
-Hierarchical Transformer with:
-- Multi-resolution spatial encoding (H3 hierarchies)
-- Temporal encoding (time-of-day, day-of-week)
-- User embeddings
-- Duration and time-gap features
-- Multi-head self-attention
-- < 500K parameters
+**For comprehensive, detailed documentation covering every aspect of this implementation, please see:**
 
-## Usage
+### [📖 COMPREHENSIVE_DOCUMENTATION.md](COMPREHENSIVE_DOCUMENTATION.md)
 
-### Training
+This 1,700+ line document is the **single source of truth** and includes:
+
+- ✅ **Complete architecture explanation** with diagrams
+- ✅ **Step-by-step implementation details**  
+- ✅ **Full data pipeline documentation**
+- ✅ **Training methodology and hyperparameters**
+- ✅ **Evaluation metrics with code**
+- ✅ **Usage guide and examples**
+- ✅ **Troubleshooting and debugging tips**
+- ✅ **Future improvement roadmap**
+
+## 🚀 Quick Start
+
 ```bash
-python train.py
-```
+# Install dependencies
+pip install -r requirements.txt
 
-### Evaluation
-```bash
+# Train the model
+python train_v2.py
+
+# Evaluate on test set
 python test.py
 ```
 
-## Requirements
-- PyTorch
-- NumPy
-- scikit-learn
-- tqdm
+## 📁 Project Structure
+
+```
+expr_hrcl_next_pred_av6/
+├── COMPREHENSIVE_DOCUMENTATION.md  ← Read this!
+├── src/
+│   ├── models/multitask_transformer.py  (Best model)
+│   ├── data/dataset.py
+│   ├── training/multitask_trainer.py
+│   └── ...
+├── data/geolife/
+├── checkpoints/
+└── logs/
+```
+
+## 🔬 Research Highlights
+
+- **Hierarchical spatial encoding** with H3 and S2 geospatial indices
+- **Multi-resolution features** (8 spatial levels + temporal + user)
+- **Parameter-efficient Transformer** architecture
+- **Proper train/val/test splits** (no data leakage)
+- **Full GPU acceleration** with PyTorch
+
+## 📊 Key Results
+
+| Metric  | Value  |
+|---------|--------|
+| Acc@1   | 42.65% |
+| Acc@5   | 60.86% |
+| Acc@10  | 63.84% |
+| MRR     | 51.01% |
+| NDCG    | 54.28% |
+
+## 🎓 Citation
+
+If you use this code in your research, please cite:
+
+```bibtex
+@misc{geolife_next_loc_2025,
+  title={Hierarchical Transformer for Next-Location Prediction},
+  author={PhD-Style Research Project},
+  year={2025},
+  url={https://github.com/aetandrianwr/expr_hrcl_next_pred_av6}
+}
+```
+
+## 📝 License
+
+Research and educational use.
+
+---
+
+**For complete technical details, algorithms, and implementation guide:**  
+**→ See [COMPREHENSIVE_DOCUMENTATION.md](COMPREHENSIVE_DOCUMENTATION.md) ←**
